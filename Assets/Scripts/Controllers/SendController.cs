@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SendController
 {
     public static void Welcome(int toClient, string msg)
@@ -24,26 +26,26 @@ public class SendController
         }
     }
 
-    public static void PlayerPosition(Player player)
+    public static void PlayerPosition(int id, Vector3 position)
     {
         using (Packet packet = new Packet((int)ServerPackets.PlayerPosition))
         {
-            packet.Write(player.Id);
-            packet.Write(player.transform.position);
+            packet.Write(id);
+            packet.Write(position);
 
             SendUdpDataToAll(packet);
         }
     }
 
-    public static void PlayerRotation(Player player)
+    public static void PlayerRotation(int id, Quaternion rotation, Vector3 eulerAngles)
     {
         using (Packet packet = new Packet((int)ServerPackets.PlayerRotation))
         {
-            packet.Write(player.Id);
-            packet.Write(player.transform.rotation);
-            packet.Write(player.transform.eulerAngles);
+            packet.Write(id);
+            packet.Write(rotation);
+            packet.Write(eulerAngles);
 
-            SendUdpDataToAll(player.Id, packet);
+            SendUdpDataToAll(id, packet);
         }
     }
 

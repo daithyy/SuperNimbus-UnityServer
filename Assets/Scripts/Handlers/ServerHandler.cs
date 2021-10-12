@@ -20,17 +20,12 @@ public class ServerHandler
 
     public static void PlayerMovement(int fromClient, Packet packet)
     {
-        bool[] actions = new bool[packet.ReadInt()];
-
-        for (int i = 0; i < actions.Length; i++)
-        {
-            actions[i] = packet.ReadBool();
-        }
+        Vector3 inputDirection = packet.ReadVector3();
 
         Quaternion rotation = packet.ReadQuaternion();
 
         Vector3 eulerAngles = packet.ReadVector3();
 
-        Server.Clients[fromClient].Player.SetInput(actions, rotation, eulerAngles);
+        Server.Clients[fromClient].Player.SetInput(inputDirection, rotation, eulerAngles, new bool[0]);
     }
 }

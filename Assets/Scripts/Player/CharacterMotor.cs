@@ -2,9 +2,9 @@ using UnityEngine;
 
 public abstract class CharacterMotor : MonoBehaviour
 {
-    public float MaxForwardSpeed = 1.5f;
-    public float MaxBackwardsSpeed = 1.5f;
-    public float MaxSidewaysSpeed = 1.5f;
+    public float MaxForwardSpeed = 4f;
+    public float MaxBackwardsSpeed = 4f;
+    public float MaxSidewaysSpeed = 4f;
     public float MaxVelocityChange = 0.2f;
 
     public float Gravity = 10.0f;
@@ -32,7 +32,6 @@ public abstract class CharacterMotor : MonoBehaviour
     }
 
     private Vector3 m_desiredMovementDirection;
-    private Vector3 m_desiredFacingDirection;
 
     void Start()
     {
@@ -51,21 +50,10 @@ public abstract class CharacterMotor : MonoBehaviour
         }
     }
 
-    public Vector3 DesiredFacingDirection
-    {
-        get { return m_desiredFacingDirection; }
-        set
-        {
-            m_desiredFacingDirection = value;
-            if (m_desiredFacingDirection.magnitude > 1) m_desiredFacingDirection = m_desiredFacingDirection.normalized;
-        }
-    }
-
     public Vector3 DesiredVelocity
     {
         get
         {
-            //return m_desiredVelocity;
             if (m_desiredMovementDirection == Vector3.zero) return Vector3.zero;
             else
             {
