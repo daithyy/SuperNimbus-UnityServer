@@ -26,6 +26,13 @@ public class ServerHandler
 
         Vector3 eulerAngles = packet.ReadVector3();
 
-        Server.Clients[fromClient].Player.SetInput(inputDirection, rotation, eulerAngles, new bool[0]);
+        bool[] actions = new bool[packet.ReadInt()];
+
+        for (int i = 0; i < actions.Length; i++)
+        {
+            actions[i] = packet.ReadBool();
+        }
+
+        Server.Clients[fromClient].Player.ReadInput(inputDirection, rotation, eulerAngles, actions);
     }
 }

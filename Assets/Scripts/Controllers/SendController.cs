@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SendController
@@ -44,6 +45,19 @@ public class SendController
             packet.Write(id);
             packet.Write(rotation);
             packet.Write(eulerAngles);
+
+            SendUdpDataToAll(id, packet);
+        }
+    }
+
+
+    public static void PlayerAnimation(int id, bool jumping, bool grounded)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.PlayerAnimation))
+        {
+            packet.Write(id);
+            packet.Write(jumping);
+            packet.Write(grounded);
 
             SendUdpDataToAll(id, packet);
         }

@@ -11,9 +11,10 @@ public enum ServerPackets
     SpawnPlayer,
     PlayerPosition,
     PlayerRotation,
+    PlayerAnimation,
 }
 
-/// <summary>Sent from client to server.</summary>
+/// <summary>Receiving to server from client.</summary>
 public enum ClientPackets
 {
     WelcomeReceived = 1,

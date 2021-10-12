@@ -6,3 +6,8 @@ public class Constants
     public const int MillisecondsPerTick = 1000 / TicksPerSecond;
     public const int MaxPlayers = 4;
 }
+
+public enum PlayerAction
+{
+    Jump,
+}

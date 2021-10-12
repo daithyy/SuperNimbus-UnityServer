@@ -10,18 +10,25 @@ public class Player : CharacterMotor
 
     private bool firstFrame = true;
 
+    private bool[] actions;
+
     public void Initialize(int id, string userName)
     {
         Id = id;
         Username = userName;
+
+        actions = new bool[1];
     }
 
-    public void SetInput(Vector3 inputDirection, Quaternion rotation, Vector3 eulerAngles, bool[] actions)
+    public void ReadInput(Vector3 inputDirection, Quaternion rotation, Vector3 eulerAngles, bool[] actions)
     {
         DesiredMovementDirection = inputDirection;
+        
         transform.rotation = rotation;
+
         transform.GetChild(0).transform.eulerAngles = eulerAngles;
-        // JUMP INPUT ACTION
+
+        this.actions = actions;
     }
 
     private void OnEnable()
@@ -63,7 +70,7 @@ public class Player : CharacterMotor
             movement += velocityChange;
 
             // Jump
-            if (CanJump && false) // TODO: && INPUT = JUMP
+            if (CanJump && actions[(int)PlayerAction.Jump]) // TODO: && INPUT = JUMP
             {
                 movement += transform.up * Mathf.Sqrt(2 * JumpHeight * Gravity);
                 Jumping = true;
@@ -84,5 +91,6 @@ public class Player : CharacterMotor
 
         SendController.PlayerPosition(Id, transform.position);
         SendController.PlayerRotation(Id, transform.rotation, transform.GetChild(0).transform.eulerAngles);
+        SendController.PlayerAnimation(Id, Jumping, Grounded);
     }
 }
