@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
@@ -8,10 +6,8 @@ public class NetworkManager : MonoBehaviour
 
     public GameObject PlayerPrefab;
 
-    public Player InstantiatePlayer()
-    {
-        return Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity).GetComponent<Player>();
-    }
+    public Player InstantiatePlayer() => 
+        Instantiate(PlayerPrefab, Constants.SpawnPosition, Quaternion.identity).GetComponent<Player>();
 
     private void Awake()
     {

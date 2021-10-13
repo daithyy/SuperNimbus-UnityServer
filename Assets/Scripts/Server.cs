@@ -7,7 +7,7 @@ using UnityEngine;
 public class Server
 {
     public static readonly Dictionary<int, Client> Clients = new Dictionary<int, Client>();
-
+    
     public static Dictionary<int, PacketHandler> PacketHandlers;
 
     private static TcpListener tcpListener;
@@ -42,8 +42,15 @@ public class Server
 
     public static void Stop()
     {
-        tcpListener.Stop();
-        udpListener.Close();
+        try
+        {
+            tcpListener.Stop();
+            udpListener.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("INFO: TCP/UDP Listeners failed to close successfully.");
+        }
     }
 
     public static void SendUDPData(IPEndPoint clientEndPoint, Packet packet)

@@ -72,6 +72,39 @@ public class ServerController
         }
     }
 
+    public static void CreateSpawner(int toCLient, int id, Vector3 position, bool hasItem)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.CreateSpawner))
+        {
+            packet.Write(id);
+            packet.Write(position);
+            packet.Write(hasItem);
+
+            SendTCPData(toCLient, packet);
+        }
+    }
+
+    public static void ItemSpawn(int id)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.ItemSpawn))
+        {
+            packet.Write(id);
+
+            SendTCPDataToAll(packet);
+        }
+    }
+
+    public static void ItemCollect(int id, int playerId)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.ItemCollect))
+        {
+            packet.Write(id);
+            packet.Write(playerId);
+
+            SendTCPDataToAll(packet);
+        }
+    }
+
     #region TCP
 
     private static void SendTCPData(int toClient, Packet packet)

@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,6 +8,10 @@ public class Player : CharacterMotor
     public int Id;
 
     public string Username;
+
+    public int ItemCount = 0;
+
+    private int maxItemCount = Constants.MaxItemCount;
 
     private bool firstFrame = true;
 
@@ -29,6 +34,18 @@ public class Player : CharacterMotor
         transform.GetChild(0).transform.eulerAngles = eulerAngles;
 
         this.actions = actions;
+    }
+
+    public bool Pickup()
+    {
+        if (ItemCount >= maxItemCount)
+        {
+            return false;
+        }
+
+        ItemCount++;
+
+        return true;
     }
 
     private void OnEnable()

@@ -46,6 +46,11 @@ public partial class Client
                 ServerController.SpawnPlayer(client.id, Player);
             }
         }
+
+        foreach (Spawner item in Spawner.Spawners.Values)
+        {
+            ServerController.CreateSpawner(id, item.Id, item.transform.position, item.HasItem);
+        }
     }
 
     private void Disconnect()

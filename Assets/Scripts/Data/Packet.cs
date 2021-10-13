@@ -13,6 +13,9 @@ public enum ServerPackets
     PlayerRotation,
     PlayerAnimation,
     PlayerDisconnected,
+    CreateSpawner,
+    ItemSpawn,
+    ItemCollect,
 }
 
 /// <summary>Receiving from client to this server.</summary>
