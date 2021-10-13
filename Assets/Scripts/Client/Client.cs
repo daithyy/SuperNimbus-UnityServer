@@ -34,7 +34,7 @@ public partial class Client
             {
                 if (client.id != id)
                 {
-                    SendController.SpawnPlayer(id, client.Player);
+                    ServerController.SpawnPlayer(id, client.Player);
                 }
             }
         }
@@ -43,7 +43,7 @@ public partial class Client
         {
             if (client.Player != null)
             {
-                SendController.SpawnPlayer(client.id, Player);
+                ServerController.SpawnPlayer(client.id, Player);
             }
         }
     }
@@ -60,5 +60,7 @@ public partial class Client
 
         Tcp.Disconnect();
         Udp.Disconnect();
+
+        ServerController.PlayerDisconnected(id);
     }
 }

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class SendController
+public class ServerController
 {
     public static void Welcome(int toClient, string msg)
     {
@@ -60,6 +59,16 @@ public class SendController
             packet.Write(grounded);
 
             SendUdpDataToAll(id, packet);
+        }
+    }
+
+    public static void PlayerDisconnected(int id)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.PlayerDisconnected))
+        {
+            packet.Write(id);
+
+            SendTCPDataToAll(packet);
         }
     }
 

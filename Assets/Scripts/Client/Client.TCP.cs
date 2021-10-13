@@ -35,7 +35,7 @@ public partial class Client
 
             stream.BeginRead(receiveBuffer, 0, DataBufferSize, ReceiveCallback, null);
 
-            SendController.Welcome(id, "Connected successfully to the Game Server.");
+            ServerController.Welcome(id, "Connected successfully to the Game Server.");
         }
 
         public void Disconnect()

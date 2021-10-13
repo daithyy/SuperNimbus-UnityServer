@@ -89,8 +89,8 @@ public class Player : CharacterMotor
         CollisionFlags flags = controller.Move(movement * Time.deltaTime);
         Grounded = (flags & CollisionFlags.CollidedBelow) != 0;
 
-        SendController.PlayerPosition(Id, transform.position);
-        SendController.PlayerRotation(Id, transform.rotation, transform.GetChild(0).transform.eulerAngles);
-        SendController.PlayerAnimation(Id, Jumping, Grounded);
+        ServerController.PlayerPosition(Id, transform.position);
+        ServerController.PlayerRotation(Id, transform.rotation, transform.GetChild(0).transform.eulerAngles);
+        ServerController.PlayerAnimation(Id, Jumping, Grounded);
     }
 }

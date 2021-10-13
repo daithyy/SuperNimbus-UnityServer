@@ -42267,7 +42267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa96f0d60aa34fd39866ca241722d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedUpdate: 0
+  fixedUpdate: 1
 --- !u!114 &7485254721074144088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42339,10 +42339,10 @@ MonoBehaviour:
   MaxForwardSpeed: 4
   MaxBackwardsSpeed: 4
   MaxSidewaysSpeed: 4
-  MaxVelocityChange: 0.4
-  Gravity: 10
+  MaxVelocityChange: 0.6
+  Gravity: 15
   CanJump: 1
-  JumpHeight: 1
+  JumpHeight: 1.2
   ForwardVector: {x: 0, y: 0, z: 1}
   Id: 0
   Username: 
