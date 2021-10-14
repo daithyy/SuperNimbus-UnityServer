@@ -9,6 +9,7 @@ public class Constants
     public const int MaxPlayers = 4;
     public static readonly Vector3 SpawnPosition = new Vector3(-31.2f, -3.8f, 13.2f);
     public const int MaxItemCount = 20;
+    public const int BufferConstant = 4096;
 }
 
 public enum PlayerAction

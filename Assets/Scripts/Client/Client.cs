@@ -9,9 +9,7 @@ public partial class Client
 
     public Player Player;
 
-    private const int BufferConstant = 4096;
-
-    private static readonly int DataBufferSize = BufferConstant;
+    private static readonly int DataBufferSize = Constants.BufferConstant;
 
     private readonly int id;
 

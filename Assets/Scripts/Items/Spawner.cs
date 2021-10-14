@@ -12,7 +12,6 @@ public class Spawner : MonoBehaviour
 
     private static int nexId = 1;
 
-
     private void Start()
     {
         HasItem = false;

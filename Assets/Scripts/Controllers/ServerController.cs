@@ -105,6 +105,18 @@ public class ServerController
         }
     }
 
+    public static void MessageServer(int id, string message, string datetime)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.MessageServer))
+        {
+            packet.Write(id);
+            packet.Write(message);
+            packet.Write(datetime);
+
+            SendTCPDataToAll(packet);
+        }
+    }
+
     #region TCP
 
     private static void SendTCPData(int toClient, Packet packet)

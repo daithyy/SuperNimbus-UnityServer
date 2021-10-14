@@ -7,7 +7,7 @@ using UnityEngine;
 public class Server
 {
     public static readonly Dictionary<int, Client> Clients = new Dictionary<int, Client>();
-    
+
     public static Dictionary<int, PacketHandler> PacketHandlers;
 
     private static TcpListener tcpListener;
@@ -144,10 +144,11 @@ public class Server
         }
 
         PacketHandlers = new Dictionary<int, PacketHandler>()
-            {
-                { (int)ClientPackets.WelcomeReceived, ServerHandler.WelcomeReceived },
-                { (int)ClientPackets.PlayerMovement, ServerHandler.PlayerMovement },
-            };
+        {
+            { (int)ClientPackets.WelcomeReceived, ServerHandler.WelcomeReceived },
+            { (int)ClientPackets.PlayerMovement, ServerHandler.PlayerMovement },
+            { (int)ClientPackets.MessageClient, ServerHandler.MessageClient },
+        };
 
         Debug.Log("Initialized packets.");
     }

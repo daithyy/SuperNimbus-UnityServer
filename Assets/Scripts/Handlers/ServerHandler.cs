@@ -35,4 +35,12 @@ public class ServerHandler
 
         Server.Clients[fromClient].Player.ReadInput(inputDirection, rotation, eulerAngles, actions);
     }
+
+    public static void MessageClient(int fromClient, Packet packet)
+    {
+        string message = packet.ReadString();
+        string datetime = DateTime.Now.ToString();
+
+        ServerController.MessageServer(fromClient, message, datetime);
+    }
 }
