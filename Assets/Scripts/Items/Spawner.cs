@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (HasItem && other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
 

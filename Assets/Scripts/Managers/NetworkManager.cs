@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
@@ -32,6 +33,7 @@ public class NetworkManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        ServerController.MessageServer(Constants.ServerId, "<color=#FF0041>Server connection has now closed.</color>", DateTime.Now.ToString());
         Server.Stop();
     }
 }
