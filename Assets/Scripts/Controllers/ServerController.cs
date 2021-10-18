@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ServerController
@@ -8,6 +9,7 @@ public class ServerController
         {
             packet.Write(msg);
             packet.Write(toClient);
+            packet.Write(DateTime.Now.ToString());
 
             SendTCPData(toClient, packet);
         }
@@ -21,6 +23,7 @@ public class ServerController
             packet.Write(player.Username);
             packet.Write(player.transform.position);
             packet.Write(player.transform.rotation);
+            packet.Write(DateTime.Now.ToString());
 
             SendTCPData(toClient, packet);
         }
@@ -67,12 +70,13 @@ public class ServerController
         using (Packet packet = new Packet((int)ServerPackets.PlayerDisconnected))
         {
             packet.Write(id);
+            packet.Write(DateTime.Now.ToString());
 
             SendTCPDataToAll(packet);
         }
     }
 
-    public static void CreateSpawner(int toCLient, int id, Vector3 position, bool hasItem)
+    public static void CreateSpawner(int toClient, int id, Vector3 position, bool hasItem)
     {
         using (Packet packet = new Packet((int)ServerPackets.CreateSpawner))
         {
@@ -80,7 +84,7 @@ public class ServerController
             packet.Write(position);
             packet.Write(hasItem);
 
-            SendTCPData(toCLient, packet);
+            SendTCPData(toClient, packet);
         }
     }
 
@@ -105,15 +109,27 @@ public class ServerController
         }
     }
 
-    public static void MessageServer(int id, string message, string datetime)
+    public static void MessageServer(int id, string message)
     {
         using (Packet packet = new Packet((int)ServerPackets.MessageServer))
         {
             packet.Write(id);
             packet.Write(message);
-            packet.Write(datetime);
+            packet.Write(DateTime.Now.ToString());
 
             SendTCPDataToAll(packet);
+        }
+    }
+
+    public static void ServerValidate(int id, string message)
+    {
+        using (Packet packet = new Packet((int)ServerPackets.ServerValidate))
+        {
+            packet.Write(id);
+            packet.Write(message);
+            packet.Write(DateTime.Now.ToString());
+
+            SendTCPData(id, packet);
         }
     }
 

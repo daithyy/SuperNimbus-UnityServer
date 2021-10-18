@@ -7,6 +7,9 @@ public class ServerHandler
     {
         int clientIdCheck = packet.ReadInt();
         string username = packet.ReadString();
+        string matchId = packet.ReadString();
+        string userId = packet.ReadString();
+        string token = packet.ReadString();
 
         Debug.Log($"{Server.Clients[fromClient].Tcp.Socket.Client.RemoteEndPoint} connected successfully and is now Player: {fromClient}");
 
@@ -16,6 +19,8 @@ public class ServerHandler
         }
 
         Server.Clients[fromClient].CreatePlayer(username);
+
+        NetworkManager.Instance.ValidateToken(fromClient, userId, matchId, token);
     }
 
     public static void PlayerMovement(int fromClient, Packet packet)
@@ -39,8 +44,7 @@ public class ServerHandler
     public static void MessageClient(int fromClient, Packet packet)
     {
         string message = packet.ReadString();
-        string datetime = DateTime.Now.ToString();
 
-        ServerController.MessageServer(fromClient, message, datetime);
+        ServerController.MessageServer(fromClient, message);
     }
 }
