@@ -83,8 +83,6 @@ public class NetworkManager : MonoBehaviour
 
         string url = $"http://{NakamaIpAddress}:{NakamaPort}/v2/rpc/servervalidate?http_key=defaulthttpkey&unwrap";
 
-        Debug.Log(url);
-
         string data = JsonUtility.ToJson(request);
 
         byte[] bodyRaw = Encoding.UTF8.GetBytes(data);
