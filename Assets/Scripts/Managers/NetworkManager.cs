@@ -79,7 +79,7 @@ public class NetworkManager : MonoBehaviour
 
     private IEnumerator RetrieveToken(Action<string> callback)
     {
-        ValidationRequest request = new ValidationRequest { userId = userId, matchId = matchId };
+        MatchRequest request = new MatchRequest { userId = userId, matchId = matchId };
 
         string url = $"http://{NakamaIpAddress}:{NakamaPort}/v2/rpc/servervalidate?http_key=defaulthttpkey&unwrap";
 

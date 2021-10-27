@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class ValidationRequest
+public class MatchRequest
 {
     public string userId;
 
